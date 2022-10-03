@@ -74,6 +74,16 @@ class AuthorizeRequest extends AbstractRequest
         return $this->getParameter('payMethods');
     }
 
+    public function getMcpData()
+    {
+        return $this->getParameter('mcpData');
+    }
+
+    public function setMcpData($value)
+    {
+        return $this->setParameter('mcpData', $value);
+    }
+
     public function getData()
     {
         $this->getRequestMethod('POST');
@@ -123,6 +133,10 @@ class AuthorizeRequest extends AbstractRequest
 
         if ($this->getPayMethods() && \is_array($this->getPayMethods())) {
             $data['payMethods'] = $this->getPayMethods();
+        }
+
+        if ($this->getMcpData() && \is_array($this->getMcpData())) {
+            $data['mcpData'] = $this->getMcpData();
         }
 
         $data['continueUrl'] = $this->getReturnUrl();
